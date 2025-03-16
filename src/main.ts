@@ -1,3 +1,4 @@
+import process from 'node:process'
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { withNestjsBigintRepair } from './bootstrap/bigint'
@@ -16,7 +17,7 @@ async function main() {
     .setVersion('1.0'))
 
   withNestjsCors(app)
-  withNestjsListen(app, 4000)
+  withNestjsListen(app, process.env.SERVER_PORT || 3000)
 }
 
 main()
