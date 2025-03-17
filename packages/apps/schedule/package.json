@@ -1,5 +1,5 @@
 {
-  "name": "@starter/provider",
+  "name": "@starter/schedule",
   "version": "1.0.0",
   "main": "main.ts",
   "scripts": {
@@ -7,13 +7,12 @@
     "start": "lnv -d -- tsx main.ts"
   },
   "dependencies": {
-    "@starter/database": "workspace:^"
+    "@nestjs/schedule": "^5.0.1",
+    "@starter/microservices": "workspace:^"
   },
   "service": {
     "host": "127.0.0.1",
-    "port": 4001
+    "port": 5000
   },
-  "depends": [
-    "@starter/schedule"
-  ]
+  "depends": []
 }

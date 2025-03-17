@@ -4,6 +4,7 @@ import { withNestjsBigintRepair } from './bootstrap/bigint'
 import { withNestjsCors } from './bootstrap/cors'
 import { withNestjsListen } from './bootstrap/listen'
 import { withNestjsSwagger } from './bootstrap/swagger'
+import { service } from './package.json'
 
 async function main() {
   const app = await NestFactory.create(AppModule)
@@ -14,9 +15,8 @@ async function main() {
     .setTitle('Website')
     .setDescription('The website API')
     .setVersion('1.0'))
-
   withNestjsCors(app)
-  withNestjsListen(app)
+  withNestjsListen(app, service.port)
 }
 
 main()

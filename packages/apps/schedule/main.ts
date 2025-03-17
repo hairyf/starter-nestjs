@@ -2,11 +2,11 @@ import type { MicroserviceOptions } from '@nestjs/microservices'
 import { NestFactory } from '@nestjs/core'
 import { Transport } from '@nestjs/microservices'
 import { service } from './package.json'
-import { ProviderModule } from './provider.module'
+import { ScheduleModule } from './schedule.module'
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    ProviderModule,
+    ScheduleModule,
     {
       transport: Transport.TCP,
       options: {
@@ -15,7 +15,6 @@ async function bootstrap() {
       },
     },
   )
-
   await app.listen()
 }
 bootstrap()

@@ -1,0 +1,7 @@
+{
+  "name": "@starter/microservices",
+  "main": "./src/index.ts",
+  "dependencies": {
+    "pathe": "^2.0.3"
+  }
+}

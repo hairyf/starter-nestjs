@@ -3,7 +3,6 @@ import { ProviderController } from './provider.controller'
 import { ProviderService } from './provider.service'
 
 @Module({
-  imports: [],
   controllers: [ProviderController],
   providers: [ProviderService],
 })

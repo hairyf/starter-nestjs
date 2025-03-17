@@ -1,15 +1,20 @@
 {
-  "name": "@starter/services",
+  "name": "@starter/database",
   "main": "src/index.ts",
   "scripts": {
     "build:prisma": "pnpm prisma:push && pnpm prisma:generate",
     "prisma:push": "lnv vault -d -- prisma db push",
-    "prisma:generate": "prisma generate"
+    "prisma:generate": "prisma generate",
+    "postinstall": "pnpm build:prisma"
   },
   "dependencies": {
-    "@prisma/client": "^6.4.1",
+    "@manypkg/get-packages": "^2.2.2",
+    "@prisma/client": "^6.5.0",
     "bignumber.js": "^9.1.2",
     "chalk": "^5.4.1",
     "tsx": "^4.19.2"
+  },
+  "devDependencies": {
+    "prisma": "^6.5.0"
   }
 }

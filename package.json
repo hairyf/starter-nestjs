@@ -1,10 +1,11 @@
 {
-  "name": "starter-nestjs",
+  "name": "microservices-nestjs",
   "type": "module",
   "version": "0.0.0",
   "packageManager": "pnpm@10.2.1",
   "license": "MIT",
   "scripts": {
+    "dev": "pnpm -r --filter=./packages/** --parallel run dev",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
@@ -15,12 +16,14 @@
   },
   "dependencies": {
     "@hairy/lnv": "^5.9.0",
+    "@manypkg/get-packages": "^2.2.2",
     "@nestjs/common": "^11.0.11",
     "@nestjs/core": "^11.0.11",
     "@nestjs/microservices": "^11.0.11",
     "@nestjs/platform-express": "^11.0.11",
     "@nestjs/swagger": "^11.0.6",
-    "chalk": "^5.4.1",
+    "execa": "^9.5.2",
+    "prompts": "^2.4.2",
     "tsx": "^4.19.2"
   },
   "optionalDependencies": {
@@ -33,10 +36,10 @@
     "@types/node": "^22.13.1",
     "eslint": "^9.20.0",
     "lint-staged": "^15.4.3",
-    "prisma": "^6.5.0",
     "simple-git-hooks": "^2.11.1",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.5"
+    "vitest": "^3.0.5",
+    "zx": "^8.4.1"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
