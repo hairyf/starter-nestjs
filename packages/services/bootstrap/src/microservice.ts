@@ -8,21 +8,21 @@ interface Options {
   port: number
 }
 
-export let microservice: Options
+export let microservice: Options | boolean = false
 
 export async function withNestjsMicroservice(app: INestApplication, options?: Options) {
-  if (!options || options.microservice === false)
+  if (options?.microservice === false)
     return
 
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.TCP,
     options: {
-      host: options.host,
-      port: options.port,
+      host: options?.host,
+      port: options?.port,
     },
   })
 
-  microservice = options
+  microservice = options || true
 
   await app.startAllMicroservices()
 }
