@@ -1,6 +1,5 @@
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
-import { withNestjsBigintRepair } from './bootstrap/bigint'
 import { withNestjsCors } from './bootstrap/cors'
 import { withNestjsListen } from './bootstrap/listen'
 import { withNestjsSwagger } from './bootstrap/swagger'
@@ -8,8 +7,6 @@ import { service } from './package.json'
 
 async function main() {
   const app = await NestFactory.create(AppModule)
-
-  withNestjsBigintRepair(app)
 
   withNestjsSwagger(app, config => config
     .setTitle('Website')
