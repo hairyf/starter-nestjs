@@ -1,11 +1,11 @@
 {
-  "name": "@starter/gateway",
+  "name": "@project/gateway",
   "scripts": {
     "dev": "lnv -d -- tsx watch main.ts",
     "start": "lnv -d -- tsx main.ts"
   },
   "dependencies": {
-    "@starter/microservices": "workspace:^",
+    "@project/microservices": "workspace:^",
     "chalk": "^5.4.1"
   },
   "service": {

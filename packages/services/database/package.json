@@ -1,5 +1,5 @@
 {
-  "name": "@starter/database",
+  "name": "@project/database",
   "main": "src/index.ts",
   "scripts": {
     "build:prisma": "pnpm prisma:push && pnpm prisma:generate",

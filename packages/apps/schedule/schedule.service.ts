@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common'
 import { Interval } from '@nestjs/schedule'
-import { clients } from '@starter/microservices'
+import { clients } from '@project/microservices'
 
 @Injectable()
 export class ScheduleService {
   constructor(
     public microservices = clients([
-      '@starter/provider',
+      '@project/provider',
     ]),
   ) {}
 

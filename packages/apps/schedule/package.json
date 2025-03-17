@@ -1,5 +1,5 @@
 {
-  "name": "@starter/schedule",
+  "name": "@project/schedule",
   "version": "1.0.0",
   "main": "main.ts",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@nestjs/schedule": "^5.0.1",
-    "@starter/microservices": "workspace:^"
+    "@project/microservices": "workspace:^"
   },
   "service": {
     "host": "127.0.0.1",
