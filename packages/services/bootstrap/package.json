@@ -1,0 +1,10 @@
+{
+  "name": "@project/bootstrap",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@manypkg/get-packages": "^2.2.2",
+    "@prisma/client": "^6.5.0",
+    "bignumber.js": "^9.1.2",
+    "chalk": "^5.4.1"
+  }
+}

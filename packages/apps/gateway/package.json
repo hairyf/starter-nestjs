@@ -5,11 +5,12 @@
     "start": "lnv -d -- tsx main.ts"
   },
   "dependencies": {
+    "@project/bootstrap": "workspace:^",
     "@project/microservices": "workspace:^",
     "chalk": "^5.4.1"
   },
   "service": {
-    "port": 3000
+    "ports": { "http": 3000 }
   },
   "depends": []
 }
