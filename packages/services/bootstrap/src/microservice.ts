@@ -3,19 +3,26 @@ import type { MicroserviceOptions } from '@nestjs/microservices'
 import { Transport } from '@nestjs/microservices'
 
 interface Options {
+  microservice?: boolean
   host: string
-  ports: Record<string, number>
+  port: number
 }
 
-export async function withNestjsMicroservice(app: INestApplication, options: Options) {
-  if (!options.ports.tcp)
+export let microservice: Options
+
+export async function withNestjsMicroservice(app: INestApplication, options?: Options) {
+  if (!options || options.microservice === false)
     return
+
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.TCP,
     options: {
       host: options.host,
-      port: options.ports.tcp,
+      port: options.port,
     },
   })
+
+  microservice = options
+
   await app.startAllMicroservices()
 }

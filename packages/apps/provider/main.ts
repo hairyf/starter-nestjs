@@ -1,21 +1,26 @@
-import type { MicroserviceOptions } from '@nestjs/microservices'
 import { NestFactory } from '@nestjs/core'
-import { Transport } from '@nestjs/microservices'
+import {
+  withNestjsBigintRepair,
+  withNestjsCors,
+  withNestjsListen,
+  withNestjsMicroservice,
+  withNestjsSwagger,
+} from '@project/bootstrap'
 import { service } from './package.json'
 import { ProviderModule } from './provider.module'
 
 async function bootstrap() {
-  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    ProviderModule,
-    {
-      transport: Transport.TCP,
-      options: {
-        host: service.host || '127.0.0.1',
-        port: service.port,
-      },
-    },
-  )
+  const app = await NestFactory.create(ProviderModule)
 
-  await app.listen()
+  withNestjsBigintRepair(app)
+  withNestjsSwagger(app, config => config
+    .setTitle('Website')
+    .setDescription('The website API')
+    .setVersion('1.0'))
+
+  withNestjsCors(app)
+
+  await withNestjsMicroservice(app, service)
+  await withNestjsListen(app, service.port)
 }
 bootstrap()

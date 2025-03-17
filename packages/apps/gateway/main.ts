@@ -6,7 +6,7 @@ import { service } from './package.json'
 async function main() {
   const app = await NestFactory.create(AppModule)
 
-  withNestjsListen(app, service.ports.http)
+  await withNestjsListen(app, service.port)
 }
 
 main()

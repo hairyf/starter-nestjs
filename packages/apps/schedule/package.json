@@ -8,10 +8,12 @@
   },
   "dependencies": {
     "@nestjs/schedule": "^5.0.1",
+    "@project/bootstrap": "workspace:^",
     "@project/microservices": "workspace:^"
   },
   "service": {
-    "host": "127.0.0.1",
+    "microservice": false,
+    "host": "localhost",
     "port": 5000
   },
   "depends": []

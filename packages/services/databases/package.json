@@ -1,0 +1,28 @@
+{
+  "name": "@project/databases",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./src/index.ts"
+    }
+  },
+  "main": "src/index.ts",
+  "scripts": {
+    "build:prisma": "pnpm prisma:push",
+    "prisma:push": "lnv vault -d -- tsx scripts/push.ts",
+    "prisma:generate": "tsx scripts/generate.ts",
+    "postinstall": "pnpm build:prisma"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.5.0",
+    "bignumber.js": "^9.1.2",
+    "chalk": "^5.4.1",
+    "execa": "^9.5.2"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "fs-extra": "^11.3.0",
+    "prisma": "^6.5.0"
+  }
+}

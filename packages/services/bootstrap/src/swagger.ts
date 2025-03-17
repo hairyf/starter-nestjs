@@ -1,6 +1,8 @@
 import type { INestApplication } from '@nestjs/common'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
+export let swagger: DocumentBuilder
+
 export function withNestjsSwagger(app: INestApplication, setup?: (config: DocumentBuilder) => DocumentBuilder) {
   const config = new DocumentBuilder()
 
@@ -16,4 +18,6 @@ export function withNestjsSwagger(app: INestApplication, setup?: (config: Docume
       jsonDocumentUrl: 'swagger/json',
     },
   )
+
+  swagger = config
 }

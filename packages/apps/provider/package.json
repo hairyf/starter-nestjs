@@ -7,11 +7,13 @@
     "start": "lnv -d -- tsx main.ts"
   },
   "dependencies": {
-    "@project/database": "workspace:^"
+    "@project/bootstrap": "workspace:^",
+    "@project/databases": "workspace:^"
   },
   "service": {
-    "host": "127.0.0.1",
-    "port": 4001
+    "microservice": true,
+    "host": "localhost",
+    "port": 4000
   },
   "depends": [
     "@project/schedule"
