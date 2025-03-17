@@ -3,7 +3,7 @@ import process from 'node:process'
 import { Logger } from '@nestjs/common'
 import chalk from 'chalk'
 
-export async function withNestjsListen(app: INestApplication, port: string | number) {
+export async function withNestjsListen(app: INestApplication, port: string | number = process.env.SERVER_PORT || 3000) {
   const logger = new Logger()
 
   try {

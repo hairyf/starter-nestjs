@@ -4,11 +4,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    networks:
-      - local-public
     ports:
       - 3000:3000
-
+    networks:
+      - internal
 networks:
-  local-public:
+  internal:
     external: true
