@@ -50,7 +50,7 @@ Before that, you need to meet the following conditions:
 
 ```bash
 # Clone the repository and navigate to the project root
-npx degit hairyf/starter-nestjs my-project
+npx degit hairyf/starter-nestjs#microservices my-project
 cd my-project
 
 # Install dependencies
