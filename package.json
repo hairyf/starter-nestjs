@@ -5,7 +5,7 @@
   "packageManager": "pnpm@10.2.1",
   "license": "MIT",
   "scripts": {
-    "dev": "pnpm -r --filter=./packages/** --parallel run dev",
+    "dev": "pnpm -r --filter=\"./packages/**/*\" --parallel run dev",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
