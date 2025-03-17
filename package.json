@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "lnv -d -- tsx watch src/main.ts",
-    "build": "tsup",
+    "build": "pnpm build:prisma && tsup",
     "start": "lnv -d -- node dist/main.js",
     "build:prisma": "pnpm prisma:push && pnpm prisma:generate",
     "prisma:push": "lnv vault -d -- prisma db push",
@@ -14,6 +14,11 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
+
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+
     "prepare": "simple-git-hooks"
   },
   "dependencies": {

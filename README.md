@@ -1,37 +1,40 @@
-# pkg-placeholder
+# NestJS Starter Project
 
-[![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![bundle][bundle-src]][bundle-href]
-[![JSDocs][jsdocs-src]][jsdocs-href]
-[![License][license-src]][license-href]
+A starter template for NestJS applications with MySQL database integration.
 
-_description_
+## Description
 
-> **Note**:
-> Replace `pkg-placeholder`, `_description_` and `antfu` globally to use this template.
+This project provides a foundation for building scalable and maintainable backend applications using NestJS framework. It comes with pre-configured MySQL database connection and basic project structure to help you get started quickly.
 
-## Sponsors
+## Prerequisites
 
-<p align="center">
-  <a href="https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg">
-    <img src='https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg'/>
-  </a>
-</p>
+- Node.js (v14 or later)
+
+## Environment Configuration
+
+The project uses a `.env` file for environment configuration. Make sure to configure the following variables:
+
+```
+DATABASE_URL = <db>://<username>:<password>@<host>:<port>/<database_name>
+SERVER_PORT = 3000
+```
+
+> You can check it out [prisma](https://www.prisma.io/docs/getting-started) for more information about the DATABASE_URL.
+
+## Running the Application
+
+```bash
+# Development mode
+pnpm dev
+
+# Production mode
+pnpm build
+pnpm start
+```
+
+Once the application is running, you can access the API documentation at:
+`http://localhost:3000/swagger/website`
 
 ## License
 
-[MIT](./LICENSE) License © [Anthony Fu](https://github.com/antfu)
-
-<!-- Badges -->
-
-[npm-version-src]: https://img.shields.io/npm/v/pkg-placeholder?style=flat&colorA=080f12&colorB=1fa669
-[npm-version-href]: https://npmjs.com/package/pkg-placeholder
-[npm-downloads-src]: https://img.shields.io/npm/dm/pkg-placeholder?style=flat&colorA=080f12&colorB=1fa669
-[npm-downloads-href]: https://npmjs.com/package/pkg-placeholder
-[bundle-src]: https://img.shields.io/bundlephobia/minzip/pkg-placeholder?style=flat&colorA=080f12&colorB=1fa669&label=minzip
-[bundle-href]: https://bundlephobia.com/result?p=pkg-placeholder
-[license-src]: https://img.shields.io/github/license/antfu/pkg-placeholder.svg?style=flat&colorA=080f12&colorB=1fa669
-[license-href]: https://github.com/antfu/pkg-placeholder/blob/main/LICENSE
-[jsdocs-src]: https://img.shields.io/badge/jsdocs-reference-080f12?style=flat&colorA=080f12&colorB=1fa669
-[jsdocs-href]: https://www.jsdocs.io/package/pkg-placeholder
+[MIT](LICENSE)
