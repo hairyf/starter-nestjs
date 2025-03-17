@@ -22,8 +22,13 @@
   "main": "src/index.ts",
   "scripts": {
     "build:prisma": "pnpm prisma:push",
-    "prisma:push": "lnv vault -d -- tsx scripts/push.ts",
+    "prisma:validate": "lnv vault -d -- tsx scripts/validate.ts",
     "prisma:generate": "tsx scripts/generate.ts",
+    "prisma:migrate": "lnv vault -d -- tsx scripts/migrate.ts",
+    "prisma:format": "lnv vault -d -- tsx scripts/format.ts",
+    "prisma:studio": "lnv vault -d -- tsx scripts/studio.ts",
+    "prisma:pull": "lnv vault -d -- tsx scripts/pull.ts",
+    "prisma:push": "lnv vault -d -- tsx scripts/push.ts",
     "postinstall": "pnpm build:prisma"
   },
   "dependencies": {
