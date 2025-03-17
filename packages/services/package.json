@@ -1,0 +1,15 @@
+{
+  "name": "@starter/services",
+  "main": "src/index.ts",
+  "scripts": {
+    "build:prisma": "pnpm prisma:push && pnpm prisma:generate",
+    "prisma:push": "lnv vault -d -- prisma db push",
+    "prisma:generate": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.4.1",
+    "bignumber.js": "^9.1.2",
+    "chalk": "^5.4.1",
+    "tsx": "^4.19.2"
+  }
+}

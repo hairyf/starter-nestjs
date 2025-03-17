@@ -1,0 +1,13 @@
+{
+  "name": "@starter/provider",
+  "version": "1.0.0",
+  "main": "main.ts",
+  "scripts": {
+    "dev": "lnv -d -- tsx watch main.ts",
+    "start": "lnv -d -- tsx main.ts"
+  },
+  "dependencies": {
+    "@starter/services": "workspace:^"
+  },
+  "depends": []
+}

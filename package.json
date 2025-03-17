@@ -5,31 +5,23 @@
   "packageManager": "pnpm@10.2.1",
   "license": "MIT",
   "scripts": {
-    "dev": "lnv -d -- tsx watch src/main.ts",
-    "build": "pnpm build:prisma && tsup",
-    "start": "lnv -d -- node dist/main.js",
-    "build:prisma": "pnpm prisma:push && pnpm prisma:generate",
-    "prisma:push": "lnv vault -d -- prisma db push",
-    "prisma:generate": "prisma generate",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
-
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
     "@hairy/lnv": "^5.9.0",
     "@nestjs/common": "^11.0.11",
     "@nestjs/core": "^11.0.11",
+    "@nestjs/microservices": "^11.0.11",
     "@nestjs/platform-express": "^11.0.11",
     "@nestjs/swagger": "^11.0.6",
-    "@prisma/client": "^6.4.1",
-    "bignumber.js": "^9.1.2",
-    "chalk": "^5.4.1"
+    "chalk": "^5.4.1",
+    "tsx": "^4.19.2"
   },
   "optionalDependencies": {
     "simple-git-hooks": "^2.11.1"
@@ -43,8 +35,6 @@
     "lint-staged": "^15.4.3",
     "prisma": "^6.5.0",
     "simple-git-hooks": "^2.11.1",
-    "tsup": "^8.4.0",
-    "tsx": "^4.19.2",
     "typescript": "^5.7.3",
     "vitest": "^3.0.5"
   },

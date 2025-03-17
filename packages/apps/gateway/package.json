@@ -1,0 +1,8 @@
+{
+  "name": "gateway",
+  "scripts": {
+    "dev": "lnv -d -- tsx watch main.ts",
+    "start": "lnv -d -- tsx main.ts"
+  },
+  "depends": []
+}
