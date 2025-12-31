@@ -5,8 +5,8 @@ import {
   withNestjsListen,
   withNestjsMicroservice,
   withNestjsSwagger,
-} from '@project/bootstrap'
-import { service } from './package.json'
+} from '@service/core'
+import { service } from '../package.json'
 import { ProviderModule } from './provider.module'
 
 async function bootstrap() {

@@ -1,8 +1,0 @@
-{
-  "name": "@project/microservices",
-  "main": "./src/index.ts",
-  "dependencies": {
-    "@manypkg/get-packages": "^2.2.2",
-    "pathe": "^2.0.3"
-  }
-}

@@ -109,7 +109,7 @@ Each application defines its service configuration in its `package.json` file:
     "port": 4000
   },
   "depends": [
-    "@project/schedule"
+    "@service/schedule"
   ]
 }
 ```
@@ -124,7 +124,7 @@ Example main entry file:
 ```typescript
 // main.ts
 import { NestFactory } from '@nestjs/core'
-import { withNestjsListen, withNestjsMicroservice } from '@project/bootstrap'
+import { withNestjsListen, withNestjsMicroservice } from '@service/core'
 import { service } from './package.json'
 import { YourServiceModule } from './your-service.module'
 
@@ -146,7 +146,7 @@ Services communicate using NestJS's built-in microservices capabilities:
 ```typescript
 @Controller()
 export class AppController {
-  constructor(@Inject('@project/your-service') private client: ClientProxy) {}
+  constructor(@Inject('@service/your-service') private client: ClientProxy) {}
 
   callService(data: any) {
     return this.client.send('pattern', data) // Request-response
@@ -162,38 +162,6 @@ export class YourServiceController {
   @MessagePattern('pattern')
   handleMessage(@Payload() data: any) {
     return result
-  }
-}
-```
-
-### Database Configuration
-
-Configure databases in `packages/services/databases/dbs.config.ts`:
-
-```typescript
-const databases: Database[] = [
-  {
-    name: 'db1', // module name
-    database: 'database_name', // database name
-    schema: './prisma/schema.prisma'
-  }
-]
-
-export default databases
-```
-
-run `pnpm prisma:push` to generate Prisma client code
-
-and use them in your services:
-
-```typescript
-// In your service
-import { db1 } from '@project/databases'
-
-@Injectable()
-export class YourService {
-  async findUsers() {
-    return await db1.user.findMany()
   }
 }
 ```

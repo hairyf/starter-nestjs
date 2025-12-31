@@ -5,7 +5,7 @@ import { ApiBody, ApiTags } from '@nestjs/swagger'
 @Controller()
 @ApiTags('app-controller')
 export class AppController {
-  constructor(@Inject('@project/provider') private client: ClientProxy) {}
+  constructor(@Inject('@service/provider') private client: ClientProxy) {}
 
   @Post()
   @ApiBody({ type: [Number] })

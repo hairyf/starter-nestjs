@@ -1,19 +1,16 @@
 {
-  "name": "@project/schedule",
+  "name": "@service/schedule",
   "version": "1.0.0",
   "main": "main.ts",
   "scripts": {
-    "dev": "lnv -d -- tsx watch main.ts",
-    "start": "lnv -d -- tsx main.ts"
+    "dev": "lnv -d -- swrun watch src/main.ts",
+    "start": "lnv -d -- swrun src/main.ts"
   },
   "dependencies": {
     "@nestjs/schedule": "^5.0.1",
-    "@project/bootstrap": "workspace:^",
-    "@project/microservices": "workspace:^"
+    "@service/core": "workspace:^"
   },
   "service": {
-    "microservice": false,
     "port": 5000
-  },
-  "depends": []
+  }
 }

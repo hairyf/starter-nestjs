@@ -1,16 +1,14 @@
 {
-  "name": "@project/gateway",
+  "name": "@service/gateway",
   "scripts": {
-    "dev": "lnv -d -- tsx watch main.ts",
-    "start": "lnv -d -- tsx main.ts"
+    "dev": "lnv -d -- swrun watch src/main.ts",
+    "start": "lnv -d -- swrun src/main.ts"
   },
   "dependencies": {
-    "@project/bootstrap": "workspace:^",
-    "@project/microservices": "workspace:^",
+    "@service/core": "workspace:^",
     "chalk": "^5.4.1"
   },
   "service": {
     "port": 3000
-  },
-  "depends": []
+  }
 }
