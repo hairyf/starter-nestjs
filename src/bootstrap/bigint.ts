@@ -1,6 +1,6 @@
 /* eslint-disable no-extend-native */
 import type { INestApplication } from '@nestjs/common'
-import { Decimal } from '@prisma/client/runtime/library'
+import { Decimal } from '@prisma/client/runtime/client'
 import BigNumber from 'bignumber.js'
 
 export function withNestjsBigintRepair(_app: INestApplication) {

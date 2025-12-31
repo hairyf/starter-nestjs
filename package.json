@@ -2,51 +2,45 @@
   "name": "starter-nestjs",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@10.2.1",
+  "packageManager": "pnpm@10.27.0",
   "license": "MIT",
   "scripts": {
-    "dev": "lnv -d -- tsx watch src/main.ts",
-    "build": "pnpm build:prisma && tsup",
-    "start": "lnv -d -- node dist/main.js",
-    "build:prisma": "pnpm prisma:push && pnpm prisma:generate",
-    "prisma:push": "lnv vault -d -- prisma db push",
-    "prisma:generate": "prisma generate",
+    "dev": "lnv -- swrun watch src/main.ts",
+    "start": "lnv -- swrun src/main.ts",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
-
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-
+    "postinstall": "lnv -- prisma generate",
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
-    "@hairy/lnv": "^5.9.0",
+    "@hairy/lnv": "^9.0.0",
     "@nestjs/common": "^11.0.11",
     "@nestjs/core": "^11.0.11",
     "@nestjs/platform-express": "^11.0.11",
     "@nestjs/swagger": "^11.0.6",
-    "@prisma/client": "^6.4.1",
-    "bignumber.js": "^9.1.2",
-    "chalk": "^5.4.1"
+    "@prisma/client": "^7.2.0",
+    "bignumber.js": "^9.3.1",
+    "chalk": "^5.6.2"
   },
   "optionalDependencies": {
-    "simple-git-hooks": "^2.11.1"
+    "simple-git-hooks": "^2.13.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.1.1",
-    "@antfu/ni": "^23.3.1",
-    "@antfu/utils": "^8.1.0",
-    "@types/node": "^22.13.1",
-    "eslint": "^9.20.0",
-    "lint-staged": "^15.4.3",
-    "prisma": "^6.5.0",
-    "simple-git-hooks": "^2.11.1",
-    "tsup": "^8.4.0",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.3",
-    "vitest": "^3.0.5"
+    "@antfu/eslint-config": "^4.19.0",
+    "@antfu/ni": "^28.0.0",
+    "@antfu/utils": "^8.1.1",
+    "@oxc-node/core": "^0.0.35",
+    "@types/node": "^22.19.3",
+    "eslint": "^9.39.2",
+    "lint-staged": "^16.2.7",
+    "prisma": "^7.2.0",
+    "simple-git-hooks": "^2.13.1",
+    "swrun": "^0.6.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

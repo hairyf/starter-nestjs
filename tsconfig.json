@@ -1,19 +1,20 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["ESNext"],
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "bundler",
     "paths": {
       "@/*": ["./src/*"]
     },
     "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
     "strict": true,
-    "strictNullChecks": true,
     "noEmit": true,
-    "outDir": "./dist",
-    "esModuleInterop": true,
-    "skipDefaultLibCheck": true,
+    "isolatedModules": true,
     "skipLibCheck": true
-  }
+  },
+  "include": ["./**/*.ts"]
 }
