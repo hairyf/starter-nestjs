@@ -15,7 +15,7 @@ let _url: string | undefined
 export const app = {
   instance: undefined as INestApplication | undefined,
   port: undefined as string | number | undefined,
-  env: process.env.NODE_ENV as 'development' | 'production',
+  env: process?.env?.NODE_ENV as 'development' | 'production',
   get url() {
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
       if (this.port)

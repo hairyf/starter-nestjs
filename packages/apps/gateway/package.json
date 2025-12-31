@@ -1,12 +1,11 @@
 {
   "name": "@service/gateway",
   "scripts": {
-    "dev": "lnv -d -- swrun watch src/main.ts",
-    "start": "lnv -d -- swrun src/main.ts"
+    "dev": "lnv -- swrun watch src/main.ts",
+    "start": "lnv -- swrun src/main.ts"
   },
   "dependencies": {
-    "@service/core": "workspace:^",
-    "chalk": "^5.4.1"
+    "@service/core": "workspace:^"
   },
   "service": {
     "port": 3000

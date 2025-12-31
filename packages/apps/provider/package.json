@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "main.ts",
   "scripts": {
-    "dev": "lnv -d -- swrun watch src/main.ts",
-    "start": "lnv -d -- swrun src/main.ts"
+    "dev": "lnv -- swrun watch src/main.ts",
+    "start": "lnv -- swrun src/main.ts"
   },
   "dependencies": {
     "@service/core": "workspace:^"
