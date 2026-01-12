@@ -1,8 +1,8 @@
 {
   "name": "@service/gateway",
   "scripts": {
-    "dev": "lnv -- swrun watch src/main.ts",
-    "start": "lnv -- swrun src/main.ts"
+    "dev": "lnv -- oxrun watch src/main.ts",
+    "start": "lnv -- oxrun src/main.ts"
   },
   "dependencies": {
     "@service/core": "workspace:^"

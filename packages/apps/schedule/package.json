@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "main.ts",
   "scripts": {
-    "dev": "lnv -- swrun watch src/main.ts",
-    "start": "lnv -- swrun src/main.ts"
+    "dev": "lnv -- oxrun watch src/main.ts",
+    "start": "lnv -- oxrun src/main.ts"
   },
   "dependencies": {
     "@nestjs/schedule": "^5.0.1",

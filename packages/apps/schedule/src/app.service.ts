@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@nestjs/common'
 import { Interval } from '@nestjs/schedule'
 
 @Injectable()
-export class ScheduleService {
+export class AppService {
   constructor(
     @Inject('@service/provider') public microservice: ClientProxy,
   ) {}

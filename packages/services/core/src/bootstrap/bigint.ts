@@ -1,9 +1,10 @@
 /* eslint-disable no-extend-native */
 import type { INestApplication } from '@nestjs/common'
-import { Decimal } from '@prisma/client/runtime/library'
-import BigNumber from 'bignumber.js'
 
-export function withNestjsBigintRepair(_app: INestApplication, decimal = Decimal) {
+export function withNestjsBigintRepair(_app: INestApplication, decimal?: any) {
+  if (!decimal)
+    return
+
   Object.defineProperty(decimal.prototype, 'toString', {
     get() { return () => new BigNumber(this.toHex()).toFixed() },
   })

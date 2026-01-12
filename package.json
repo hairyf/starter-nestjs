@@ -9,15 +9,14 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
-
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
-    "@hairy/lnv": "^9.0.0",
+    "@hairy/lnv": "^9.1.0",
+    "@hairy/oxrun": "^0.2.8",
     "@nestjs/common": "^11.0.11",
     "@nestjs/core": "^11.0.11",
     "@nestjs/microservices": "^11.0.11",
@@ -31,11 +30,11 @@
     "@antfu/eslint-config": "^6.7.3",
     "@antfu/ni": "^23.3.1",
     "@antfu/utils": "^8.1.1",
+    "@oxc-node/core": "^0.0.35",
     "@types/node": "^22.19.3",
     "eslint": "^9.39.2",
     "lint-staged": "^16.2.7",
     "simple-git-hooks": "^2.13.1",
-    "swrun": "^0.6.2",
     "typescript": "^5.9.3",
     "vitest": "^4.0.16"
   },
