@@ -15,7 +15,7 @@
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
-    "@hairy/lnv": "^9.0.0",
+    "@hairy/lnv": "^9.1.0",
     "@hairy/oxrun": "^0.2.8",
     "@hairy/utils": "^1.46.0",
     "@nestjs/common": "^11.0.11",
@@ -34,6 +34,7 @@
     "@antfu/eslint-config": "^4.19.0",
     "@antfu/ni": "^28.0.0",
     "@antfu/utils": "^8.1.1",
+    "@oxc-node/core": "^0.0.35",
     "@types/node": "^22.19.3",
     "eslint": "^9.39.2",
     "lint-staged": "^16.2.7",
