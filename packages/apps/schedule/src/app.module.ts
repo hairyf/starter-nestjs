@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
 import { ClientsModule, Transport } from '@nestjs/microservices'
 import { ScheduleModule as NestjsScheduleModule } from '@nestjs/schedule'
-import { ScheduleService } from './schedule.service'
+import { AppService } from './app.service'
 
 @Module({
   imports: [
@@ -18,7 +18,7 @@ import { ScheduleService } from './schedule.service'
     ]),
   ],
   providers: [
-    ScheduleService,
+    AppService,
   ],
 })
-export class ScheduleModule {}
+export class AppModule {}

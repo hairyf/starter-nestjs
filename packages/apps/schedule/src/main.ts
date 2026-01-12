@@ -7,10 +7,10 @@ import {
   withNestjsSwagger,
 } from '@service/core'
 import { service } from '../package.json'
-import { ScheduleModule } from './schedule.module'
+import { AppModule } from './app.module'
 
 async function bootstrap() {
-  const app = await NestFactory.create(ScheduleModule)
+  const app = await NestFactory.create(AppModule)
 
   withNestjsBigintRepair(app)
   withNestjsSwagger(app, config => config
