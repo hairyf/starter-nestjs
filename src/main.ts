@@ -1,9 +1,11 @@
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
-import { withNestjsBigintRepair } from './bootstrap/bigint'
-import { withNestjsCors } from './bootstrap/cors'
-import { withNestjsListen } from './bootstrap/listen'
-import { withNestjsSwagger } from './bootstrap/swagger'
+import {
+  withNestjsBigintRepair,
+  withNestjsCors,
+  withNestjsListen,
+  withNestjsSwagger,
+} from './bootstrap'
 
 async function main() {
   const app = await NestFactory.create(AppModule)

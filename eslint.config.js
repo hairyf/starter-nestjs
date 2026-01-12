@@ -5,5 +5,6 @@ export default antfu(
   { type: 'lib' },
   { rules: {
     'ts/explicit-function-return-type': 'off',
+    'ts/consistent-type-imports': 'off',
   } },
 )

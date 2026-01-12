@@ -5,7 +5,7 @@ import { ApiTags } from '@nestjs/swagger'
 @ApiTags('app-controller')
 export class AppController {
   @Get()
-  getHello(): string {
+  async getHello(): Promise<string> {
     return 'Hello World'
   }
 }
