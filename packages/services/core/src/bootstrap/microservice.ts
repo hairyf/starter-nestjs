@@ -1,20 +1,20 @@
 import type { INestApplication } from '@nestjs/common'
-import type { MicroserviceOptions } from '@nestjs/microservices'
+import { merge } from '@hairy/utils'
+import { Transport } from '@nestjs/microservices'
 import { app as appConfig } from '../constants'
+import { parseWithEnvExpand } from '../utils'
 
 export async function withNestjsMicroservice(app: INestApplication, service?: any) {
   if (!service || !service.microservice)
     return
 
-  const microservice = app.connectMicroservice<MicroserviceOptions>(service.microservice)
+  const options = merge(service.microservice, {
+    transport: Transport[service.microservice.transport],
+    options: parseWithEnvExpand(service.microservice.options),
+  })
 
-  appConfig.microservice ??= {} as any
-  Object.assign(
-    appConfig.microservice as any,
-    service.microservice,
-    {
-      instance: microservice,
-    },
-  )
+  const microservice = app.connectMicroservice(options)
+
+  appConfig.microservice = { ...options, instance: microservice }
   await app.startAllMicroservices()
 }

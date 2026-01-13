@@ -5,11 +5,11 @@ import { Interval } from '@nestjs/schedule'
 @Injectable()
 export class AppService {
   constructor(
-    @Inject('@service/provider') public microservice: ClientProxy,
+    @Inject('@service/provider') private client: ClientProxy,
   ) {}
 
   @Interval(3000)
   async interval() {
-    this.microservice.emit('schedule', `Test Schedule Send Other Provider, Time: ${new Date().toISOString()}`)
+    this.client.emit('schedule', `Test Schedule Send Other Provider, Time: ${new Date().toISOString()}`)
   }
 }

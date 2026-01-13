@@ -11,10 +11,10 @@
   },
   "service": {
     "microservice": {
-      "transport": "TCP",
+      "transport": "REDIS",
       "options": {
-        "host": "127.0.0.1",
-        "port": 4001
+        "host": "$REDIS_HOST",
+        "port": "$REDIS_PORT"
       }
     },
     "host": "127.0.0.1",

@@ -1,14 +1,6 @@
-import type { INestApplication, INestMicroservice } from '@nestjs/common'
-import type { CustomTransportStrategy, GrpcOptions, KafkaOptions, MqttOptions, NatsOptions, RedisOptions, RmqOptions, TcpOptions } from '@nestjs/microservices'
+import type { INestApplication } from '@nestjs/common'
+import type { Microservice } from '../types'
 import process from 'node:process'
-
-export interface CustomStrategy {
-  transport?: 'custom'
-  strategy: CustomTransportStrategy
-  options?: Record<string, any>
-}
-
-export type MicroserviceOptions = GrpcOptions | TcpOptions | RedisOptions | NatsOptions | MqttOptions | RmqOptions | KafkaOptions | CustomStrategy
 
 let _url: string | undefined
 
@@ -26,5 +18,5 @@ export const app = {
   set url(value) {
     _url = value
   },
-  microservice: undefined as (MicroserviceOptions & { instance: INestMicroservice | undefined }) | undefined,
+  microservice: undefined as Microservice | undefined,
 }
