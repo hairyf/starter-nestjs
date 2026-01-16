@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "@nestjs/schedule": "^5.0.1",
-    "@service/core": "workspace:^"
+    "@service/core": "workspace:^",
+    "@service/redis": "workspace:^",
+    "nestjs-redlock-universal": "^0.3.0"
   },
   "service": {
     "port": 5000

@@ -12,9 +12,9 @@ export async function withNestjsListen(app: INestApplication, port: string | num
   const [error] = await to(app.listen(port))
 
   if (error) {
-    loggerTryPort(port)
+    logger.error(`Port ${port} is in use, trying ${+port + 1}...`)
     await delay(1000)
-    await withNestjsListen(app, port)
+    await withNestjsListen(app, +port + 1)
     return
   }
   appConfig.instance = app
@@ -40,8 +40,4 @@ async function close(app: INestApplication) {
   await app.close()
   logger.log(`${styleText('bold', 'Server:')} ${styleText('gray', 'Closed')}`)
   process.exit(0)
-}
-
-function loggerTryPort(port: string | number) {
-  logger.error(`Port ${port} is in use, waiting for it to be free...`)
 }

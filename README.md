@@ -104,13 +104,16 @@ Each application defines its service configuration in its `package.json` file:
 ```json
 {
   "service": {
-    "microservice": true,
+    "microservice": {
+      "transport": "REDIS",
+      "options": {
+        "host": "$REDIS_HOST",
+        "port": "$REDIS_PORT"
+      }
+    },
     "host": "localhost",
     "port": 4000
-  },
-  "depends": [
-    "@service/schedule"
-  ]
+  }
 }
 ```
 
@@ -140,6 +143,26 @@ bootstrap()
 ### Microservices Communication
 
 Services communicate using NestJS's built-in microservices capabilities:
+
+```ts
+import { BullModule } from '@nestjs/bull'
+import { Module } from '@nestjs/common'
+import { ClientsModule } from '@nestjs/microservices'
+import { microservices } from '@service/core'
+import { isRedisAvailable, redis } from '@service/redis'
+import { AppController } from './app.controller'
+import { QueueModule } from './modules'
+
+@Module({
+  controllers: [AppController],
+  imports: [
+    ClientsModule.register(microservices()),
+    QueueModule,
+  ],
+})
+
+export class AppModule {}
+```
 
 **Sending Messages**:
 

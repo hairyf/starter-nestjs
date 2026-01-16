@@ -2,7 +2,7 @@ import { BullModule } from '@nestjs/bull'
 import { Module } from '@nestjs/common'
 import { ClientsModule } from '@nestjs/microservices'
 import { microservices } from '@service/core'
-import { isRedisAvailable, redis } from '@service/redis'
+import { redis } from '@service/redis'
 import { AppController } from './app.controller'
 import { QueueModule } from './modules'
 
@@ -11,7 +11,7 @@ import { QueueModule } from './modules'
   imports: [
     ClientsModule.register(microservices()),
     BullModule.forRoot({
-      redis: isRedisAvailable
+      redis: redis.enable
         ? {
             host: redis.options.host,
             port: redis.options.port,

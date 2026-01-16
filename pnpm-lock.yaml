@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  nestjs-redlock-universal:
+    hash: 2d206b6a85bce92d3d532dd48e7b666188890971dec95bff9726d5d97e43090c
+    path: patches/nestjs-redlock-universal.patch
+
 importers:
 
   .:
@@ -91,6 +96,12 @@ importers:
       '@service/core':
         specifier: workspace:^
         version: link:../../services/core
+      '@service/redis':
+        specifier: workspace:^
+        version: link:../../services/redis
+      nestjs-redlock-universal:
+        specifier: ^0.3.0
+        version: 0.3.0(patch_hash=2d206b6a85bce92d3d532dd48e7b666188890971dec95bff9726d5d97e43090c)(@nestjs/common@11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.11)(redlock-universal@0.8.1(ioredis@5.9.1))(reflect-metadata@0.2.2)
 
   packages/services/core:
     dependencies:
@@ -126,14 +137,14 @@ importers:
   packages/services/redis:
     dependencies:
       '@hairy/utils':
-        specifier: ^1.46.0
-        version: 1.46.0
+        specifier: ^1.47.0
+        version: 1.47.0
       ioredis:
         specifier: ^5.9.1
         version: 5.9.1
       nestjs-redlock-universal:
         specifier: ^0.3.0
-        version: 0.3.0(@nestjs/common@11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.11)(redlock-universal@0.8.1(ioredis@5.9.1))(reflect-metadata@0.2.2)
+        version: 0.3.0(patch_hash=2d206b6a85bce92d3d532dd48e7b666188890971dec95bff9726d5d97e43090c)(@nestjs/common@11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.11)(redlock-universal@0.8.1(ioredis@5.9.1))(reflect-metadata@0.2.2)
 
 packages:
 
@@ -617,6 +628,9 @@ packages:
 
   '@hairy/utils@1.46.0':
     resolution: {integrity: sha512-toNJ9k5rfxnm8MPMJcwd9zqaYpL4A2vNb5S12swQAVJA/vTv67GwPhmPrwPrZuykeF96n3N4Zj7jHIRbyOBxcw==}
+
+  '@hairy/utils@1.47.0':
+    resolution: {integrity: sha512-v45Z3s1a5TAhPPZSzN5QCL9c0lULK154eGJQYC51lyPdYAOpnvRLd2KB3VU7hhmvtSvu4boFJJNcMconW6r9Lg==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -3979,7 +3993,7 @@ snapshots:
     dependencies:
       '@antfu/utils': 9.3.0
       '@clack/prompts': 0.11.0
-      '@hairy/utils': 1.46.0
+      '@hairy/utils': 1.47.0
       consola: 3.4.2
       dotenv: 16.6.1
       dotenv-vault: 1.27.0(@swc/core@1.15.8)(@types/node@22.19.3)(typescript@5.9.3)
@@ -4007,6 +4021,12 @@ snapshots:
       rerun-watcher: 0.5.0
 
   '@hairy/utils@1.46.0':
+    dependencies:
+      '@types/lodash-es': 4.17.12
+      bignumber.js: 9.3.1
+      p-pipe: 4.0.0
+
+  '@hairy/utils@1.47.0':
     dependencies:
       '@types/lodash-es': 4.17.12
       bignumber.js: 9.3.1
@@ -6506,7 +6526,7 @@ snapshots:
 
   negotiator@1.0.0: {}
 
-  nestjs-redlock-universal@0.3.0(@nestjs/common@11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.11)(redlock-universal@0.8.1(ioredis@5.9.1))(reflect-metadata@0.2.2):
+  nestjs-redlock-universal@0.3.0(patch_hash=2d206b6a85bce92d3d532dd48e7b666188890971dec95bff9726d5d97e43090c)(@nestjs/common@11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.11)(redlock-universal@0.8.1(ioredis@5.9.1))(reflect-metadata@0.2.2):
     dependencies:
       '@nestjs/common': 11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/core': 11.1.11(@nestjs/common@11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/microservices@11.1.11)(@nestjs/platform-express@11.1.11)(reflect-metadata@0.2.2)(rxjs@7.8.2)
