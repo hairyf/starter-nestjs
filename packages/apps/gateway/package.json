@@ -5,7 +5,10 @@
     "start": "lnv -- oxrun src/main.ts"
   },
   "dependencies": {
-    "@service/core": "workspace:^"
+    "@nestjs/bull": "^11.0.1",
+    "@service/core": "workspace:^",
+    "@service/redis": "workspace:^",
+    "bull": "^4.15.0"
   },
   "service": {
     "port": 3000

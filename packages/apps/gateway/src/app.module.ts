@@ -1,20 +1,26 @@
+import { BullModule } from '@nestjs/bull'
 import { Module } from '@nestjs/common'
-import { ClientsModule, Transport } from '@nestjs/microservices'
+import { ClientsModule } from '@nestjs/microservices'
+import { microservices } from '@service/core'
+import { isRedisAvailable, redis } from '@service/redis'
 import { AppController } from './app.controller'
+import { QueueModule } from './modules'
 
 @Module({
   controllers: [AppController],
   imports: [
-    ClientsModule.register([
-      {
-        name: '@service/provider',
-        transport: Transport.TCP,
-        options: {
-          host: '127.0.0.1',
-          port: 4001,
-        },
-      },
-    ]),
+    ClientsModule.register(microservices()),
+    BullModule.forRoot({
+      redis: isRedisAvailable
+        ? {
+            host: redis.options.host,
+            port: redis.options.port,
+            enableReadyCheck: false,
+            maxRetriesPerRequest: null,
+          }
+        : undefined,
+    }),
+    QueueModule,
   ],
 })
 
