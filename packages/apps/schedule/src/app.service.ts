@@ -10,9 +10,9 @@ export class AppService {
   ) {}
 
   @Interval(5000)
-  @Redlock({ key: 'schedule', ttl: 5000, debug: true })
+  @Redlock({ key: 'schedule', debug: true, ttl: 1000 })
   async redlock() {
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    await new Promise(resolve => setTimeout(resolve, 5000))
     this.client.emit('schedule', `Test Schedule Send Other Provider, Time: ${new Date().toISOString()}`)
   }
 }

@@ -15,7 +15,7 @@ index f886e19ca26c5d217d4db18f8087a5c5e076dfe6..97bb6bb0d2c61dbaf1534004dd5d41ab
  
  /**
 diff --git a/dist/index.js b/dist/index.js
-index 417f53b4606c8e254ac2566af7e5dfddeddf5c8a..ed68f71e3635dccc04a773ae52f76488f306ca92 100644
+index 417f53b4606c8e254ac2566af7e5dfddeddf5c8a..10b1e7158b3afeebc934f44844816783f3d7eacd 100644
 --- a/dist/index.js
 +++ b/dist/index.js
 @@ -12,7 +12,9 @@ var __decorateClass = (decorators, target, key, kind) => {
@@ -41,7 +41,7 @@ index 417f53b4606c8e254ac2566af7e5dfddeddf5c8a..ed68f71e3635dccc04a773ae52f76488
      descriptor.value = async function(...args) {
        const redlockService = this.redlockService;
        if (!redlockService) {
-@@ -191,19 +198,35 @@ function Redlock(options) {
+@@ -191,19 +198,37 @@ function Redlock(options) {
        if (!key || typeof key !== "string") {
          throw new Error(ERROR_MESSAGES.INVALID_LOCK_KEY);
        }
@@ -57,13 +57,16 @@ index 417f53b4606c8e254ac2566af7e5dfddeddf5c8a..ed68f71e3635dccc04a773ae52f76488
 -        return await redlockService.using(
 +        const result = await redlockService.using(
            key,
-           async () => originalMethod.apply(this, args),
+-          async () => originalMethod.apply(this, args),
++          async () => {
++            if (debug) {
++              const successMsg = `${instanceMsg} 🔐 Lock ${keyMsg} acquired successfully`;
++              logger.log(styleText("gray", successMsg));
++            }
++            return originalMethod.apply(this, args)
++          },
            lockOptions
          );
-+        if (debug) {
-+          const successMsg = `${instanceMsg} 🔐 Lock ${keyMsg} acquired successfully`;
-+          logger.log(styleText("gray", successMsg));
-+        }
 +        return result;
        } catch (error) {
 +        if (error?.message?.includes('Failed to acquire lock') && error?.message.includes('is already held')) {
