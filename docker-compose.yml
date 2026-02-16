@@ -1,0 +1,13 @@
+services:
+  app:
+    container_name: starter-nestjs
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - internal
+networks:
+  internal:
+    external: true

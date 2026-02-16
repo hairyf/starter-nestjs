@@ -1,0 +1,53 @@
+{
+  "name": "starter-nestjs",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.27.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "lnv -- oxrun watch src/main.ts",
+    "start": "lnv -- oxrun src/main.ts",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "prepare": "simple-git-hooks"
+  },
+  "dependencies": {
+    "@hairy/lnv": "^9.1.0",
+    "@hairy/oxrun": "^0.2.8",
+    "@hairy/utils": "^1.46.0",
+    "@nestjs/common": "^11.0.11",
+    "@nestjs/core": "^11.0.11",
+    "@nestjs/platform-express": "^11.0.11",
+    "@nestjs/swagger": "^11.0.6",
+    "@prisma/adapter-mariadb": "^7.2.0",
+    "@prisma/client": "^7.2.0",
+    "bignumber.js": "^9.3.1",
+    "ioredis": "^5.9.1",
+    "nestjs-redlock-universal": "^0.3.0"
+  },
+  "optionalDependencies": {
+    "simple-git-hooks": "^2.13.1"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.19.0",
+    "@antfu/ni": "^28.0.0",
+    "@antfu/utils": "^8.1.1",
+    "@oxc-node/core": "^0.0.35",
+    "@types/node": "^22.19.3",
+    "eslint": "^9.39.2",
+    "lint-staged": "^16.2.7",
+    "prisma": "^7.2.0",
+    "simple-git-hooks": "^2.13.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
