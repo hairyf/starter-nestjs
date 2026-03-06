@@ -5,7 +5,7 @@ import { AppService } from './app.service'
 import { redis } from './services'
 
 const imports = [
-  redis.enable && RedlockModule.forRoot({
+  redis.enabled && RedlockModule.forRoot({
     nodes: [new IoredisAdapter(redis)],
     defaultTtl: 30000,
   }),

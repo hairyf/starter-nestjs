@@ -35,5 +35,5 @@
     "jsonc",
     "yaml"
   ],
-  "prisma.pinToPrisma6": true
+  "prisma.pinToPrisma6": false
 }

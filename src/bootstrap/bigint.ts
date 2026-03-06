@@ -10,7 +10,6 @@ export function withNestjsBigintRepair(_app: INestApplication) {
   Object.defineProperty(Decimal.prototype, 'toJSON', {
     get() { return () => new BigNumber(this.toHex()).toFixed() },
   })
-
   Object.defineProperty(BigInt.prototype, 'toJSON', {
     get() { return () => String(this) },
   })
