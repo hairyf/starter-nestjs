@@ -17,7 +17,7 @@
   "dependencies": {
     "@hairy/lnv": "^9.1.0",
     "@hairy/oxrun": "^0.2.8",
-    "@hairy/utils": "^1.50.0",
+    "@hairy/utils": "^1.51.0",
     "@nestjs/common": "^11.0.11",
     "@nestjs/core": "^11.0.11",
     "@nestjs/platform-express": "^11.0.11",

@@ -15,8 +15,8 @@ importers:
         specifier: ^0.2.8
         version: 0.2.8
       '@hairy/utils':
-        specifier: ^1.50.0
-        version: 1.50.0
+        specifier: ^1.51.0
+        version: 1.51.0
       '@nestjs/common':
         specifier: ^11.0.11
         version: 11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -594,8 +594,8 @@ packages:
     resolution: {integrity: sha512-/dUkCNKU7O31oT609m9ccAM2FBnnaq8p+f24Vb1jEjBQFaXKwPZKdyGz/z9AFR8HlhjhH81Thv2rUFMTsnhmaA==}
     hasBin: true
 
-  '@hairy/utils@1.50.0':
-    resolution: {integrity: sha512-eRTS/QDJoGq5ogpPq07NYq37ddHZdX9FNgZaarUsQxbL99w21LHOh8UU7def1sNvwdf0AIzo4hpdLzvM786XzQ==}
+  '@hairy/utils@1.51.0':
+    resolution: {integrity: sha512-eMEVAkPCO91hUPTtSuK3fTHXQ35yRCRCT5K5LGYqJVdaOxjU4NNfX4x4HaOa+PxYlrctRr87VTYcLMYcgRzg7g==}
 
   '@hono/node-server@1.19.6':
     resolution: {integrity: sha512-Shz/KjlIeAhfiuE93NDKVdZ7HdBVLQAfdbaXEaoAVO3ic9ibRSLGIQGkcBbFyuLr+7/1D5ZCINM8B+6IvXeMtw==}
@@ -4254,7 +4254,7 @@ snapshots:
     dependencies:
       '@antfu/utils': 9.3.0
       '@clack/prompts': 0.11.0
-      '@hairy/utils': 1.50.0
+      '@hairy/utils': 1.51.0
       consola: 3.4.2
       dotenv: 16.6.1
       dotenv-vault: 1.27.0(@swc/core@1.15.8)(@types/node@22.19.3)(typescript@5.9.3)
@@ -4281,7 +4281,7 @@ snapshots:
       ohash: 1.1.6
       rerun-watcher: 0.5.0
 
-  '@hairy/utils@1.50.0':
+  '@hairy/utils@1.51.0':
     dependencies:
       '@types/lodash-es': 4.17.12
       bignumber.js: 9.3.1
