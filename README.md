@@ -10,16 +10,25 @@ This project provides a foundation for building scalable and maintainable backen
 
 - Node.js (v14 or later)
 
-## Environment Configuration
+## Setup
 
-The project uses a `.env` file for environment configuration. Make sure to configure the following variables:
+```sh
+# 1. Create environment file
+cp .env.example .env
+# Edit .env file as needed(if prod)
 
+# 2. Start docker compose setup
+docker-compose --env-file .env -f docker/docker-compose.setup.yml up -d
+
+# 3. Install dependencies
+pnpm install
+
+# 4. Run migrations
+pnpm prisma migrate dev
+
+# 5. Run the application
+pnpm dev # or pnpm start
 ```
-DATABASE_URL = <db>://<username>:<password>@<host>:<port>/<database_name>
-SERVER_PORT = 3000
-```
-
-> You can check it out [prisma](https://www.prisma.io/docs/getting-started) for more information about the DATABASE_URL.
 
 ## Running the Application
 

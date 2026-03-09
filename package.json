@@ -7,6 +7,9 @@
   "scripts": {
     "dev": "lnv -- oxrun watch src/main.ts",
     "start": "lnv -- oxrun src/main.ts",
+    "docker:dev": "docker compose --env-file .env -f docker/docker-compose.dev.yml",
+    "docker:dev:up": "pnpm docker:dev up -d",
+    "docker:dev:down": "pnpm docker:dev down",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
