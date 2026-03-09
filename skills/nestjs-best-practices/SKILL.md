@@ -7,13 +7,13 @@ metadata:
   source: Internal Documentation
 ---
 
-> Based on starter-nestjs project. Focuses on production-ready patterns, service configuration, and application bootstrapping.
+> Based on starter-nestjs project. Application setup uses nestjs-extras-w; focuses on production-ready patterns and service configuration.
 
 ## Core References
 
 | Topic | Description | Reference |
 |-------|-------------|-----------|
-| Bootstrap Pattern | Functional configuration pattern for application setup | [core-bootstrap-pattern](references/core-bootstrap-pattern.md) |
+| Application Setup | App configuration via nestjs-extras-w (CORS, Swagger, listen, decimal repair) | [core-bootstrap-pattern](references/core-bootstrap-pattern.md) |
 | Service Proxy | Optional service pattern using proxy utilities | [core-service-proxy](references/core-service-proxy.md) |
 
 ## Best Practices

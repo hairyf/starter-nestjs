@@ -7,34 +7,11 @@ description: Configurable Swagger/OpenAPI documentation setup pattern
 
 ## Usage
 
-Configure Swagger with a flexible callback pattern that allows customization without creating wrapper modules.
+This project uses `withNestjsSwagger` from `nestjs-extras-w`, which supports an optional callback for customization.
 
 ```typescript
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { withNestjsSwagger } from 'nestjs-extras-w'
 
-export function withNestjsSwagger(
-  app: INestApplication,
-  setup?: (config: DocumentBuilder) => DocumentBuilder
-) {
-  const config = new DocumentBuilder()
-  setup?.(config)
-  const document = SwaggerModule.createDocument(app, config.build())
-  SwaggerModule.setup(
-    'swagger/website',
-    app,
-    document,
-    {
-      jsonDocumentUrl: 'swagger/json',
-    },
-  )
-}
-```
-
-## Configuration
-
-Use the callback to customize Swagger metadata:
-
-```typescript
 withNestjsSwagger(app, config => config
   .setTitle('Website')
   .setDescription('The website API')
@@ -42,6 +19,10 @@ withNestjsSwagger(app, config => config
   .addTag('users', 'User management endpoints')
   .addBearerAuth())
 ```
+
+## Configuration
+
+The second argument is a callback that receives `DocumentBuilder`; use it to set title, version, tags, auth, etc. (see Usage above).
 
 ## Controller Integration
 

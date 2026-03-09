@@ -4,7 +4,7 @@ A starter template for NestJS applications with MySQL database integration.
 
 ## Description
 
-This project provides a foundation for building scalable and maintainable backend applications using NestJS framework. It comes with pre-configured MySQL database connection and basic project structure to help you get started quickly.
+This project provides a foundation for building scalable and maintainable backend applications using NestJS. Application bootstrap (CORS, Swagger, listen with port fallback, BigInt/Decimal serialization) is handled by [nestjs-extras-w](https://www.npmjs.com/package/nestjs-extras-w). It includes Prisma and optional Redis/Redlock integration.
 
 ## Prerequisites
 
@@ -24,11 +24,10 @@ SERVER_PORT = 3000
 ## Running the Application
 
 ```bash
-# Development mode
+# Development mode (watch)
 pnpm dev
 
-# Production mode
-pnpm build
+# Production run
 pnpm start
 ```
 

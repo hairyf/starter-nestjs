@@ -1,63 +1,52 @@
 ---
 name: core-bootstrap-pattern
-description: Functional bootstrap pattern for NestJS application configuration
+description: Application setup via nestjs-extras-w package
 ---
 
-# Bootstrap Pattern
+# Application Setup (nestjs-extras-w)
 
 ## Usage
 
-Use functional configuration functions (`withNestjs*`) to set up your NestJS application. This pattern keeps `main.ts` clean and makes configuration modular and testable.
+Use the `nestjs-extras-w` package for functional application configuration. It provides `with*` and `start*` helpers so `main.ts` stays minimal and setup is modular.
 
 ```typescript
 import { NestFactory } from '@nestjs/core'
-import { AppModule } from './app.module'
 import {
-  withNestjsBigintRepair,
+  startNestjsListen,
+  withDecimalRepair,
   withNestjsCors,
-  withNestjsListen,
   withNestjsSwagger,
-} from './bootstrap'
+} from 'nestjs-extras-w'
+
+import { AppModule } from './app.module'
 
 async function main() {
   const app = await NestFactory.create(AppModule)
 
-  withNestjsBigintRepair(app)
+  withDecimalRepair(app)
   withNestjsSwagger(app, config => config
     .setTitle('Website')
     .setDescription('The website API')
     .setVersion('1.0'))
   withNestjsCors(app)
-  withNestjsListen(app)
+  startNestjsListen(app)
 }
 
 main()
 ```
 
-## Implementation Pattern
+## Provided Helpers
 
-Each bootstrap function accepts `INestApplication` and optionally a configuration callback:
-
-```typescript
-import type { INestApplication } from '@nestjs/common'
-
-export function withNestjsSwagger(
-  app: INestApplication,
-  setup?: (config: DocumentBuilder) => DocumentBuilder
-) {
-  const config = new DocumentBuilder()
-  setup?.(config)
-  const document = SwaggerModule.createDocument(app, config.build())
-  SwaggerModule.setup('swagger/website', app, document, {
-    jsonDocumentUrl: 'swagger/json',
-  })
-}
-```
+| Helper | Purpose |
+|--------|---------|
+| `withDecimalRepair(app)` | BigInt/Prisma Decimal JSON serialization fix |
+| `withNestjsSwagger(app, setup?)` | Swagger/OpenAPI with optional config callback |
+| `withNestjsCors(app)` | CORS configuration |
+| `startNestjsListen(app)` | Listen with optional port / auto-increment on EADDRINUSE |
 
 ## Key Points
 
-* **Separation of Concerns**: Each bootstrap function handles one aspect of configuration
-* **Composability**: Functions can be combined in any order
-* **Testability**: Each function can be tested independently
-* **Optional Configuration**: Use callbacks for flexible configuration without creating wrapper modules
-* **Export Pattern**: Use barrel exports (`index.ts`) to simplify imports
+* **Single Dependency**: Application bootstrap logic lives in `nestjs-extras-w`, not local bootstrap files
+* **Composability**: Call helpers in any order in `main.ts`
+* **Optional Configuration**: e.g. `withNestjsSwagger` accepts a callback for title, version, tags, etc.
+* **Consistent Naming**: `with*` for configuration, `start*` for starting the server

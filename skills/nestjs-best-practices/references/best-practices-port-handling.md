@@ -7,54 +7,26 @@ description: Automatic port increment when port is already in use
 
 ## Usage
 
-Automatically try the next available port if the configured port is already in use. This prevents startup failures in development environments.
+This project uses `startNestjsListen(app)` from `nestjs-extras-w`. It listens on `process.env.SERVER_PORT` or 3000, and if the port is in use (`EADDRINUSE`), automatically tries the next port.
 
 ```typescript
-import type { INestApplication } from '@nestjs/common'
-import process from 'node:process'
-import { styleText } from 'node:util'
-import { Logger } from '@nestjs/common'
+import { startNestjsListen } from 'nestjs-extras-w'
 
-export async function withNestjsListen(
-  app: INestApplication,
-  port: string | number = process.env.SERVER_PORT || 3000
-) {
-  const logger = new Logger('Listen')
-
-  try {
-    await app.listen(port)
-    logger.log(`${styleText('bold', 'Listening on:')} ${styleText('gray', ` http://127.0.0.1:${port}`)}`)
-  }
-  catch (error: any) {
-    if (error.code !== 'EADDRINUSE')
-      throw error
-    logger.error(`Port ${port} is in use, trying ${+port + 1}`)
-    await withNestjsListen(app, +port + 1)
-  }
+async function main() {
+  const app = await NestFactory.create(AppModule)
+  // ... withDecimalRepair, withNestjsSwagger, withNestjsCors
+  startNestjsListen(app)
 }
 ```
 
-## How It Works
+## How It Works (nestjs-extras-w)
 
-1. **Attempt Listen**: Try to listen on the specified port
-2. **Check Error Code**: If error is `EADDRINUSE`, the port is in use
-3. **Recursive Retry**: Recursively call with `port + 1`
-4. **Re-throw Other Errors**: Non-port errors are re-thrown immediately
-
-## Logging
-
-Provide clear feedback about port changes:
-
-```typescript
-logger.log(`${styleText('bold', 'Listening on:')} ${styleText('gray', ` http://127.0.0.1:${port}`)}`)
-logger.log(`${styleText('bold', 'Swaggier URL:')} ${styleText('gray', ` http://127.0.0.1:${port}/swagger/website`)}`)
-```
+1. **Attempt Listen**: Tries the port from `process.env.SERVER_PORT` or 3000
+2. **EADDRINUSE**: If the port is in use, retries with the next port
+3. **Logging**: Logs the listening URL; other errors are re-thrown
 
 ## Key Points
 
-* **Development Friendly**: Prevents manual port changes during development
-* **Error Handling**: Only handles `EADDRINUSE`, other errors propagate
-* **Recursive Pattern**: Uses recursion for clean retry logic
-* **Type Coercion**: Use `+port` to convert string ports to numbers
-* **Default Fallback**: Falls back to port 3000 if `SERVER_PORT` is not set
-* **Visual Feedback**: Use `styleText` for colored console output
+* **Development Friendly**: Prevents manual port changes when a port is already in use
+* **Env Config**: Uses `SERVER_PORT` or defaults to 3000
+* **Provided by nestjs-extras-w**: Call `startNestjsListen(app)` in `main.ts`

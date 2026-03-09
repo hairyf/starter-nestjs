@@ -7,24 +7,15 @@ description: Fixing JSON serialization for BigInt and Prisma Decimal types
 
 ## Usage
 
-Override `toJSON` methods for `BigInt` and Prisma `Decimal` types to ensure proper JSON serialization in API responses.
+This project uses `withDecimalRepair(app)` from `nestjs-extras-w` in `main.ts`. It overrides `toJSON` for `BigInt` and Prisma `Decimal` so API responses serialize correctly.
 
 ```typescript
-import type { INestApplication } from '@nestjs/common'
-import { Decimal } from '@prisma/client/runtime/client'
-import BigNumber from 'bignumber.js'
+import { withDecimalRepair } from 'nestjs-extras-w'
 
-export function withNestjsBigintRepair(_app: INestApplication) {
-  Object.defineProperty(Decimal.prototype, 'toString', {
-    get() { return () => new BigNumber(this.toHex()).toFixed() },
-  })
-  Object.defineProperty(Decimal.prototype, 'toJSON', {
-    get() { return () => new BigNumber(this.toHex()).toFixed() },
-  })
-
-  Object.defineProperty(BigInt.prototype, 'toJSON', {
-    get() { return () => String(this) },
-  })
+async function main() {
+  const app = await NestFactory.create(AppModule)
+  withDecimalRepair(app)
+  // ...
 }
 ```
 
@@ -38,7 +29,7 @@ export function withNestjsBigintRepair(_app: INestApplication) {
 
 * **Decimal Conversion**: Uses `toHex()` to get the internal representation, then converts via `BigNumber` to a string
 * **BigInt Conversion**: Converts to string using `String()` constructor
-* **Prototype Modification**: Modifies prototypes globally, so apply once during bootstrap
+* **Prototype Modification**: Modifies prototypes globally; apply once at startup via `withDecimalRepair(app)` from nestjs-extras-w
 * **ESLint Exception**: Use `/* eslint-disable no-extend-native */` to suppress linting warnings
 
 ## Key Points
