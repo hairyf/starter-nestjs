@@ -1,70 +1,62 @@
 ---
 name: core-service-proxy
-description: Optional service pattern using proxy utilities for conditional service availability
+description: Optional service pattern using ghost from @hairy/utils for conditional service availability
 ---
 
-# Service Proxy Pattern
+# Service Ghost Pattern
 
 ## Usage
 
-Use the `proxy` utility from `@hairy/utils` to create services that are conditionally available based on environment configuration. This pattern prevents errors when services are not configured.
+Use the `ghost` utility from `@hairy/utils` to create services that are conditionally available. Until resolved, access throws with your custom message; after `resolve(instance)`, the ghost forwards to the real instance.
 
 ```typescript
-import { proxy } from '@hairy/utils'
+import process from 'node:process'
+import { ghost } from '@hairy/utils'
+import { PrismaPg } from '@prisma/adapter-pg'
 import { PrismaClient } from '@prisma/client'
 
-export const prisma = proxy<PrismaClient, { enable: boolean }>(
-  undefined,
-  { enable: false },
-  { strictMessage: 'Prisma is not available, please check your environment variables.' },
-)
+export const prisma = ghost<PrismaClient>('Prisma is not available, please check your environment variables.')
 
 if (process.env.DATABASE_URL) {
-  const adapter = new PrismaMariaDb({
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_NAME,
-    connectionLimit: 5,
-  })
-  prisma.proxy.update(new PrismaClient({ adapter }))
-  prisma.enable = true
+  const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL })
+  prisma.resolve(new PrismaClient({ adapter }))
 }
 ```
 
 ## Service Initialization
 
-Check environment variables and initialize the service if available:
+Check environment variables and call `resolve(instance)` when the service is configured:
 
 ```typescript
+import type { RedisOptions } from 'ioredis'
+import process from 'node:process'
+import { ghost } from '@hairy/utils'
 import { Redis } from 'ioredis'
 
-const redis = proxy<Redis, { enable: boolean }>(
-  undefined,
-  { enable: false },
-  { strictMessage: 'Redis is not available, please check your environment variables.' },
-)
+export const redis = ghost<Redis>('Redis is not available, please check your environment variables.')
 
 if (process.env.REDIS_HOST && process.env.REDIS_PORT) {
   const options: RedisOptions = {
     host: process.env.REDIS_HOST!,
     port: Number(process.env.REDIS_PORT!),
   }
-  redis.proxy.update(new Redis(options))
-  redis.enable = true
+  redis.resolve(new Redis(options))
+}
+else if (process.env.REDIS_URL) {
+  redis.resolve(new Redis(process.env.REDIS_URL!))
 }
 ```
 
 ## Using in Modules
 
-Check the `enable` flag before importing modules that depend on the service:
+Use the `enabled` flag to conditionally import modules that depend on the service:
 
 ```typescript
 import { redis } from './services'
-import { RedlockModule } from 'nestjs-redlock-universal'
+import { IoredisAdapter, RedlockModule } from 'nestjs-redlock-universal'
 
 const imports = [
-  redis.enable && RedlockModule.forRoot({
+  redis.enabled && RedlockModule.forRoot({
     nodes: [new IoredisAdapter(redis)],
     defaultTtl: 30000,
   }),
@@ -78,8 +70,8 @@ export class AppModule {}
 
 ## Key Points
 
-* **Type Safety**: The proxy maintains TypeScript types for the wrapped service
-* **Graceful Degradation**: Services can be disabled without breaking the application
-* **Error Messages**: Custom error messages guide developers when services are unavailable
-* **Enable Flag**: Use `enable` property to conditionally import dependent modules
-* **Multiple Config Sources**: Support both individual env vars and connection strings (e.g., `REDIS_URL`)
+* **ghost&lt;T&gt;(message)**: Creates a ghost proxy; unbound access throws with `message`
+* **resolve(instance)**: Binds the real instance; afterwards the ghost delegates to it and `enabled` is true
+* **enabled**: Read-only flag; use for conditional module imports (e.g. `redis.enabled && RedlockModule.forRoot(...)`)
+* **Type Safety**: The ghost preserves the TypeScript type of the wrapped service
+* **Multiple Config Sources**: Support both `REDIS_HOST`/`REDIS_PORT` and `REDIS_URL` (or `DATABASE_URL` for Prisma)

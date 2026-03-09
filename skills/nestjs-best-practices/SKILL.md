@@ -14,7 +14,7 @@ metadata:
 | Topic | Description | Reference |
 |-------|-------------|-----------|
 | Application Setup | App configuration via nestjs-extras-w (CORS, Swagger, listen, decimal repair) | [core-bootstrap-pattern](references/core-bootstrap-pattern.md) |
-| Service Proxy | Optional service pattern using proxy utilities | [core-service-proxy](references/core-service-proxy.md) |
+| Service Ghost | Optional services via ghost (@hairy/utils), resolve/enabled | [core-service-proxy](references/core-service-proxy.md) |
 
 ## Best Practices
 
