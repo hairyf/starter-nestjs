@@ -1,9 +1,11 @@
 services:
   app:
+    env_file:
+      - ../.env
     container_name: starter-nestjs
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.deploy
     ports:
       - 3000:3000
     networks:
