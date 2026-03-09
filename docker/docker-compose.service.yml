@@ -1,3 +1,5 @@
+name: 'starter-nestjs:service'
+
 services:
   # Development environment PostgreSQL database
   postgres:

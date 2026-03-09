@@ -1,3 +1,5 @@
+name: starter-nestjs
+
 services:
   app:
     env_file:

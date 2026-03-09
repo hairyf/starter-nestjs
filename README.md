@@ -17,8 +17,8 @@ This project provides a foundation for building scalable and maintainable backen
 cp .env.example .env
 # Edit .env file as needed(if prod)
 
-# 2. Start docker compose setup
-docker-compose --env-file .env -f docker/docker-compose.setup.yml up -d
+# 2. Start docker compose service
+docker-compose --env-file .env -f docker/docker-compose.service.yml up -d
 
 # 3. Install dependencies
 pnpm install
